@@ -6,9 +6,10 @@ const url = "http://numbersapi.com/";
 const port = process.env.PORT || 3000;
 app.use(cors())
 
-app.get("/api/:num", async(req, res)=>{
-    const number  = req.params.num
-    if (isNaN(parseInt(number))){
+app.get("/api/classify-number", async(req, res)=>{
+    const number  = req.query.number
+    const parsedNumber = Number(number)
+    if (isNaN(parsedNumber)){
         res.status(400).json({number: "alphabet", error: "true"});
     }else{
         try{
