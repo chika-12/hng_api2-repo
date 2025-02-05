@@ -1,14 +1,14 @@
 const express = require("express")
-const axios = require("axios")
 const cors = require("cors")
 const numberWork = require("./number_work_out")
 const app = express()
+const url = "http://numbersapi.com/";
 const port = process.env.PORT || 3000;
 app.use(cors())
 
-app.get("/:num", async(req, res)=>{
+app.get("/api/:num", async(req, res)=>{
     const number  = req.params.num
-    if (isNaN(number)){
+    if (isNaN(parseInt(number))){
         res.status(400).json({number: "alphabet", error: "true"});
     }else{
         try{
